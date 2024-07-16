@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: tu_nombre
+      changes:
+        - createTable:
+            tableName: usuarios
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: nombre
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: contrasena
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: usuario_activo
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: tu_nombre
+      changes:
+        - createTable:
+            tableName: comentarios
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: contenido
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: usuario_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: comentarios
+            baseColumnNames: usuario_id
+            referencedTableName: usuarios
+            referencedColumnNames: id
+            constraintName: fk_comentarios_usuario
+
+

@@ -1,0 +1,25 @@
+spring:
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  flyway:
+    enabled: false
+  datasource:
+#    url: jdbc:postgresql://${AD_HOST}/${AD_NAME}
+    url: jdbc:postgresql://localhost/foro_hub
+    username: ${AD_USER}
+    password: ${AD_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+jpa:
+  hibernate:
+    ddl-auto: update
+  show-sql: true
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      jdbc.time_zone: UTC
+      default_schema: public
+      non_contextual_creation: false
+  persistence-unit-name: myJpaUnit
+
+jwt:
+  secret: 123456
